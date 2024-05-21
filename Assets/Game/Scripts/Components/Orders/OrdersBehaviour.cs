@@ -31,7 +31,7 @@ public class OrdersBehaviour : MonoBehaviour
 
     private void HandleOrderCompleted()
     {
-        Debug.Log("Order Completed");
+        //Debug.Log("Order Completed");
         _currentOrder.OnOrderCompleted.RemoveListener(HandleOrderCompleted);
         _ordersList.Remove(_currentOrder);
         _ordersList_debug.Remove(_currentOrder.ToString());

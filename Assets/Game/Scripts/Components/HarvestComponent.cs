@@ -25,6 +25,7 @@ public class HarvestComponent : BaseComponent
 
     public void DropLoot()
     {
+        List<ItemData> loot = new List<ItemData>();
         foreach (DropItem dropItem in harvestConfig.dropList)
         {
             float r = Random.Range(0, 101);
@@ -32,14 +33,12 @@ public class HarvestComponent : BaseComponent
             {
                 dropItem.ItemData.count = Random.Range(dropItem.minCount, dropItem.maxCount + 1);
 
-                GameObject lootBox = Instantiate(dropItem.ItemData.prefab, transform.position, Quaternion.identity);
-                GridManager.OcupateCell(GridNavigation.PositionToCoords(transform.position), lootBox);
-
-                ItemsStorage lootBoxComponent = lootBox.GetComponent<ItemsStorage>();
-                lootBoxComponent.PutItem(dropItem.ItemData);
+                loot.Add(dropItem.ItemData);
                 //inventoryComponent.AddItem(dropItem.ItemData);
             }
         }
+
+        ObjectPool.CreateLootBox(transform.position, loot);
 
         Debug.Log("Items dropped!");
         Destroy(gameObject);

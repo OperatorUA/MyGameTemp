@@ -48,4 +48,4 @@ MonoBehaviour:
             currentValue: 0
   inventoryConfig:
     inventorySize: 2
-  moveSpeed: 5
+  moveSpeed: 1

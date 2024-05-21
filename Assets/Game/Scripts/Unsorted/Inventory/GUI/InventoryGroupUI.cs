@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class InventoryGroupUI : MonoBehaviour
 {
-    public InventoryUI equipmentInventory;
-    public InventoryUI cargoInventory;
+    public Inventory equipmentInventory;
+    public Inventory cargoInventory;
     public InventoryComponent currentInventoryComponent;
     public void LoadInventoryData(InventoryComponent inventoryComponent)
     {

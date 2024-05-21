@@ -8,11 +8,10 @@ public class RemoveItemSlot : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         GameObject droppedObject = eventData.pointerDrag;
-        InventoryItemUI droppedItem = droppedObject.GetComponent<InventoryItemUI>();
+        InventoryItem droppedItem = droppedObject.GetComponent<InventoryItem>();
 
-        InventorySlotUI prevSlot = droppedItem.parentAfterDrag.GetComponent<InventorySlotUI>();
-        prevSlot.slotData.itemData = null;
-        prevSlot.Refresh();
+        Inventory inventory = GUIManager.Instance.inventory;
+        inventory.unitStorage.DropItem(droppedItem.itemData);
 
         Destroy(droppedItem.gameObject);
     }

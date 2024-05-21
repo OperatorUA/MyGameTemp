@@ -8,7 +8,7 @@ public class GUIManager : MonoBehaviour
     public TextMeshProUGUI logText;
     public InventoryGroupUI inventoryGroup;
 
-    public InventoryUI inventoryUI;
+    public Inventory inventory;
 
     public static GUIManager _instance { get; private set; }
     public static GUIManager Instance

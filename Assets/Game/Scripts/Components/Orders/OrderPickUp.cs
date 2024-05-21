@@ -31,7 +31,7 @@ public class OrderPickUp : BaseOrder
             OnOrderCompleted.Invoke();
         } else
         {
-            itemsStorage.GetAll(unitComponent.inventoryComponent);
+            itemsStorage.SendAllItems(unitComponent.inventoryComponent.itemsStorage);
 
             OnOrderCompleted.Invoke();
         }

@@ -89,9 +89,9 @@ public class PlayerControls : MonoBehaviour
             UnselectUnits();
             selectedUnit = unit;
 
-            InventoryUI inventoryUI = GUIManager.Instance.inventoryUI;
+            Inventory inventoryUI = GUIManager.Instance.inventory;
             inventoryUI.Refresh();
-            selectedUnit.inventoryComponent.onInventoryChanged.AddListener(inventoryUI.Refresh);
+            selectedUnit.inventoryComponent.itemsStorage.StorageChanged.AddListener(inventoryUI.Refresh);
         }
     }
 
@@ -101,8 +101,8 @@ public class PlayerControls : MonoBehaviour
         {
             selectedUnit.outline.enabled = false;
 
-            InventoryUI inventoryUI = GUIManager.Instance.inventoryUI;
-            selectedUnit.inventoryComponent.onInventoryChanged.RemoveListener(inventoryUI.Refresh);
+            Inventory inventoryUI = GUIManager.Instance.inventory;
+            selectedUnit.inventoryComponent.itemsStorage.StorageChanged.RemoveListener(inventoryUI.Refresh);
         }
         selectedUnit = null;
     }

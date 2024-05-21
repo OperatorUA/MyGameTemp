@@ -101,13 +101,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6372192696526430857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f541b6c0104c64dab64025a6942db6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a8dfd0ab5d7e3e4c8847672c1cecf01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _inventoryItemUiPrefab: {fileID: 4148575143848563783, guid: ea3da1976e20e214097a4f1fdb4c5f2b,
     type: 3}
-  slotData:
-    slotType: 0
-    itemData: {fileID: 0}
-    itemCount: 0
-    index: 0
+  itemData: {fileID: 0}
+  index: -1
