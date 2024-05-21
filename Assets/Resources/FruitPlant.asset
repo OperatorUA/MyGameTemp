@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf747312125d6a4d9896d55891523a3, type: 3}
+  m_Name: FruitPlant
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4066870865465338087, guid: 3a999de8e3b110a4b8fadee6551b9818, type: 3}
+  harvestConfig:
+    skillType: 0
+    harvestDifficulty: 100
+    requiredSkillLevel: 10
+  healthConfig:
+    maxHealth:
+      baseValue: 100
+      currentValue: 100
+    healthRegen:
+      baseValue: 3
+      currentValue: 3
+  growConfig:
+    growStages:
+    - modelPrefab: {fileID: 4066870865465338087, guid: 3a999de8e3b110a4b8fadee6551b9818,
+        type: 3}
+    - modelPrefab: {fileID: 4066870865465338087, guid: 9a3d401b2987fab468155695f6c37d91,
+        type: 3}
+    - modelPrefab: {fileID: 4066870865465338087, guid: 104a63af49fb3d34e9c7e20a4a7f5579,
+        type: 3}
+    - modelPrefab: {fileID: 4066870865465338087, guid: 9ffa3ce3a1ef43840b7a7571c44a539a,
+        type: 3}
+    growSpeed:
+      baseValue: 1
+      currentValue: 1
+    growDifficulty: 1000
+    currentStage: 0

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e52163a277a8e468df38365e6c989f, type: 3}
+  m_Name: Stone
+  m_EditorClassIdentifier: 
+  harvestConfig:
+    skillType: 1
+    harvestDifficulty: 10
+    requiredSkillLevel: 1
+    dropList:
+    - ItemData: {fileID: 11400000, guid: 9a59af889311cb0459cbff6b172a54cb, type: 2}
+      minCount: 80
+      maxCount: 120
+      chanse: 100
+    - ItemData: {fileID: 11400000, guid: b5bc54d39aab8c84887591b61454fa17, type: 2}
+      minCount: 1
+      maxCount: 3
+      chanse: 3
