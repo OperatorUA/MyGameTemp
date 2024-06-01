@@ -7,6 +7,7 @@ public class BaseUnit : BaseEntity
     public Outline outline;
 
     public OrdersBehaviour ordersBehaviour;
+
     public HealthComponent healthComponent;
     public ExpComponent expComponent;
     public InventoryComponent inventoryComponent;

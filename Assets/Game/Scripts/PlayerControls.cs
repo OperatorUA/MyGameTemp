@@ -56,24 +56,21 @@ public class PlayerControls : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Mouse1) && selectedUnit != null)
                 {
-                    List<BaseOrder> orders = new List<BaseOrder>();
                     GridCell gridCell = GridManager.GetCell(hit.point, true);
+
+                    if (!Input.GetKey(KeyCode.LeftShift)) selectedUnit.ordersBehaviour.RemoveAll();
 
                     if (gridCell.isOcupated == false)
                     {
-                        orders.Add(new OrderMoveTo(hit.point, selectedUnit));
+                        selectedUnit.ordersBehaviour.AddOrder(new MoveCmd(selectedUnit, hit.point));
                     }
                     else
                     {
                         if (gridCell.objectOnCell.TryGetComponent(out HarvestComponent harvestComponent))
                         {
-                            orders.Add(new OrderHarvest(harvestComponent, selectedUnit));
+                            selectedUnit.ordersBehaviour.AddOrder(new HarvestTask(selectedUnit, harvestComponent));
                         }
                     }
-
-                    if (!Input.GetKey(KeyCode.LeftShift)) selectedUnit.ordersBehaviour.ClearOrders();
-
-                    if (orders.Count != 0) selectedUnit.ordersBehaviour.AddOrders(orders);
                 }
 
                 GridManager.HoverCell(hit.point);

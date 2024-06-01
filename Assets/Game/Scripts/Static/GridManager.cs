@@ -59,7 +59,7 @@ public class GridManager : MonoBehaviour
         return result;
     }
 
-    public static GridCell GetNearestCellWithComponent<T>(int range, Vector3Int center)
+    public static GridCell GetNearestCellWithComponent<T>(Vector3Int center, int range = int.MaxValue)
     {
         if (range > WorldGenerator.worldSize.x) range = Mathf.RoundToInt(WorldGenerator.worldSize.x / 2f);
         if (range > WorldGenerator.worldSize.z) range = Mathf.RoundToInt(WorldGenerator.worldSize.z / 2f);

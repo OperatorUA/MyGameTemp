@@ -109,7 +109,7 @@ public class ResourceLoader
         Type listType = type.GetGenericArguments()[0];
         if (!listType.IsValueType)
         {
-            Debug.LogWarning("the list cannot contain reference types");
+            //Debug.LogWarning("the list cannot contain reference types");
         }
 
         IList clonedList = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(listType));

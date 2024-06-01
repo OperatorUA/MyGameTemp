@@ -37,10 +37,11 @@ public class WorldGenerator : MonoBehaviour
                     GridManager.OcupateCell(coords, obj);
                 }
 
-                if (x == 51 && z == 51)
+                if (x == worldSize.x / 2 + 1 && z == worldSize.z / 2 + 1)
                 {
-                    GameObject obj = Instantiate(prefab, GridNavigation.GetCellCenterPosition(coords), Quaternion.identity, transform);
-                    GridManager.OcupateCell(coords, obj);
+                    ObjectPool.CreateLootBox(GridNavigation.GetCellCenterPosition(coords), ObjectPool.GetRandomItem());
+                    //GameObject obj = Instantiate(prefab, GridNavigation.GetCellCenterPosition(coords), Quaternion.identity, transform);
+                    //GridManager.OcupateCell(coords, obj);
                 }
             }
         }

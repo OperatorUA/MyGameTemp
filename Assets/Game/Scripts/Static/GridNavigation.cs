@@ -20,8 +20,9 @@ public class GridNavigation
         return PositionToCoords(position) + cellSize / 2f;
     }
 
-    public static Vector3 GetNearestFreeCellPosition(Vector3Int coords, Vector3 unitPosition)
+    public static Vector3 GetNearestFreeCellPosition(Vector3 position, Vector3 unitPosition)
     {
+        Vector3Int coords = PositionToCoords(position);
         if (GridManager.isCellFree(coords)) return coords;
 
         float minDistance = float.MaxValue;

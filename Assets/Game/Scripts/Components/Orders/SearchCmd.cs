@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrderSearch : BaseOrder
+public class SearchCmd : BaseCmd
 {
     public float range;
     public BaseUnit unitComponent;
     public Vector3Int centerCoords;
 
-    public OrderSearch(float range, BaseUnit unitComponent)
+    public SearchCmd(float range, BaseUnit unitComponent)
     {
         this.range = range;
         this.unitComponent = unitComponent;
-        OnOrderCompleted.AddListener(BeforeCompleteOrder);
+        CmdCompleted.AddListener(BeforeCompleteOrder);
     }
     public override void Execute()
     {

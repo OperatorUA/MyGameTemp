@@ -8,13 +8,13 @@ public class SearchButton : MonoBehaviour
     public void OnClick()
     {
         Vector3Int unitCoords = GridNavigation.PositionToCoords(selectedUnit.transform.position);
-        GridCell cell = GridManager.GetNearestCellWithComponent<BaseResource>(radius, unitCoords);
+        GridCell cell = GridManager.GetNearestCellWithComponent<BaseResource>(unitCoords, radius);// test radius max value
 
-        if (cell != null )
+        if (cell != null)
         {
             HarvestComponent harvestComponent = cell.objectOnCell.GetComponent<HarvestComponent>();
-            OrderHarvest orderHarvest = new OrderHarvest(harvestComponent, selectedUnit);
-            selectedUnit.ordersBehaviour.AddOrder(orderHarvest);
+            HarvestTask harvestTask = new HarvestTask(selectedUnit, harvestComponent);
+            selectedUnit.ordersBehaviour.AddOrder(harvestTask);
         } else
         {
             Debug.Log("I cant see any objects in this range!");

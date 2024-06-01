@@ -5,67 +5,85 @@ using UnityEngine;
 
 public class OrdersBehaviour : MonoBehaviour
 {
-    private List<BaseOrder> _ordersList = new List<BaseOrder>();
-    private BaseOrder _currentOrder = null;
-
-    [SerializeField] private List<string> _ordersList_debug = new List<string>();
+    public List<BaseCmd> cmdList = new List<BaseCmd>();
+    public List<string> cmdList_debug = new List<string>();
+    BaseCmd currentCmd = null;
     private void Update()
     {
-        if (_currentOrder != null)
+        if (cmdList.Count == 0) return;
+
+        if (currentCmd != null)
         {
-            _currentOrder.Execute();
+            currentCmd.Execute();
+        }
+        else
+        {
+            currentCmd = cmdList.First();
+
+            currentCmd.CmdCompleted.AddListener(OnTaskCompeted);
+            currentCmd.CmdAborted.AddListener(OnTaskAborted);
+        }
+    }
+
+    public void AddOrder(BaseCmd order)
+    {
+        if (order is BaseTask task)
+        {
+            foreach (BaseCmd subCmd in task.subCmd)
+            {
+                if (subCmd is BaseTask subTask)
+                {
+                    AddOrder(subTask);
+                }
+                else
+                {
+                    cmdList.Add(subCmd);
+                    cmdList_debug.Add(subCmd.ToString());
+                }
+            }
         } else
         {
-            if (_ordersList.Count != 0)
+            cmdList.Add(order);
+            cmdList_debug.Add(order.ToString());
+        }
+    }
+
+    public void RemoveAll()
+    {
+        if (currentCmd != null) RemoveCurrentCmd();
+        cmdList.Clear();
+    }
+
+    private void OnTaskCompeted()
+    {
+        RemoveCurrentCmd();
+    }
+
+    private void OnTaskAborted()
+    {
+        if (currentCmd is BaseTask)
+        {
+            foreach (BaseCmd subTask in currentCmd.parentTask.subCmd)
             {
-                UpdateCurrentOrder();
+                if (cmdList.Contains(subTask))
+                {
+                    cmdList.Remove(subTask);
+                    cmdList_debug.Remove(subTask.ToString());
+                }
             }
         }
+
+        RemoveCurrentCmd();
     }
 
-    private void UpdateCurrentOrder()
+    private void RemoveCurrentCmd()
     {
-        _currentOrder = _ordersList.First();
-        _currentOrder.OnOrderCompleted.AddListener(HandleOrderCompleted);
-    }
+        currentCmd.CmdCompleted.RemoveListener(OnTaskCompeted);
+        currentCmd.CmdAborted.RemoveListener(OnTaskAborted);
 
-    private void HandleOrderCompleted()
-    {
-        //Debug.Log("Order Completed");
-        _currentOrder.OnOrderCompleted.RemoveListener(HandleOrderCompleted);
-        _ordersList.Remove(_currentOrder);
-        _ordersList_debug.Remove(_currentOrder.ToString());
-        _currentOrder = null;
-    }
+        cmdList.Remove(currentCmd);
+        cmdList_debug.Remove(currentCmd.ToString());
 
-    public void ClearOrders()
-    {
-        _currentOrder?.OnOrderCompleted.Invoke();
-        _ordersList.Clear();
-        _ordersList_debug.Clear();
-    }
-
-    public void AbortCurrentOrder()
-    {
-        if (_currentOrder != null)
-        {
-            _currentOrder.OnOrderCompleted.Invoke();
-            _ordersList.Remove(_currentOrder);
-            _ordersList_debug.Remove(_currentOrder.ToString());
-        }
-    }
-
-    public void AddOrder(BaseOrder order)
-    {
-        _ordersList.Add(order);
-        _ordersList_debug.Add(order.ToString());
-    }
-
-    public void AddOrders(List<BaseOrder> orders)
-    {
-        foreach (BaseOrder order in orders)
-        {
-            AddOrder(order);
-        }
+        currentCmd = null;
     }
 }
