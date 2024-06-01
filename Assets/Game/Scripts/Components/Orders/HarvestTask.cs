@@ -15,8 +15,8 @@ public class HarvestTask : BaseTask
         harvestCmd.parentTask = this;
         pickUpTask.parentTask = this;
 
-        subCmd.Add(moveCmd);
-        subCmd.Add(harvestCmd);
-        subCmd.Add(pickUpTask);
+        subCmds.Add(moveCmd);
+        subCmds.Add(harvestCmd);
+        subCmds.Add(pickUpTask);
     }
 }

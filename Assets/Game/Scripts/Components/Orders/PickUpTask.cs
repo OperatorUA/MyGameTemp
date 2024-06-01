@@ -12,12 +12,7 @@ public class PickUpTask : BaseTask
         orderMoveTo.parentTask = this;
         pickUpCmd.parentTask = this;
 
-        subCmd.Add(orderMoveTo);
-        subCmd.Add(pickUpCmd);
-    }
-
-    public override void Execute()
-    {
-        base.Execute();
+        subCmds.Add(orderMoveTo);
+        subCmds.Add(pickUpCmd);
     }
 }

@@ -8,8 +8,7 @@ public class SearchButton : MonoBehaviour
     public void OnClick()
     {
         Vector3Int unitCoords = GridNavigation.PositionToCoords(selectedUnit.transform.position);
-        GridCell cell = GridManager.GetNearestCellWithComponent<BaseResource>(unitCoords, radius);// test radius max value
-
+        GridCell cell = GridManager.GetNearestCellWithComponent<BaseResource>(unitCoords, radius);
         if (cell != null)
         {
             HarvestComponent harvestComponent = cell.objectOnCell.GetComponent<HarvestComponent>();
