@@ -15,10 +15,10 @@ MonoBehaviour:
   healthConfig:
     maxHealth:
       baseValue: 100
-      currentValue: 100
+      currentValue: 0
     healthRegen:
       baseValue: 2
-      currentValue: 2
+      currentValue: 0
   expConfig:
     skills:
       _serializedList:
