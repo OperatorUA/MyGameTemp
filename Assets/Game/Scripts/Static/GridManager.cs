@@ -15,9 +15,9 @@ public class GridManager : MonoBehaviour
 
     private void CreateGrid()
     {
-        for (int z = 0; z < WorldGenerator.worldSize.z; z++)
+        for (int z = 0; z < SimpleWorldGenerator.worldSize.z; z++)
         {
-            for (int x = 0; x < WorldGenerator.worldSize.x; x++)
+            for (int x = 0; x < SimpleWorldGenerator.worldSize.x; x++)
             {
                 Vector3 position = new Vector3(x, 0, z) + transform.position;
                 CreateCell(GridNavigation.PositionToCoords(position));
@@ -60,8 +60,8 @@ public class GridManager : MonoBehaviour
 
     public static GridCell GetNearestCellWithComponent<T>(Vector3Int center, int range = int.MaxValue)
     {
-        if (range > WorldGenerator.worldSize.x) range = Mathf.RoundToInt(WorldGenerator.worldSize.x / 2f);
-        if (range > WorldGenerator.worldSize.z) range = Mathf.RoundToInt(WorldGenerator.worldSize.z / 2f);
+        if (range > SimpleWorldGenerator.worldSize.x) range = Mathf.RoundToInt(SimpleWorldGenerator.worldSize.x / 2f);
+        if (range > SimpleWorldGenerator.worldSize.z) range = Mathf.RoundToInt(SimpleWorldGenerator.worldSize.z / 2f);
 
         List<GridCell> cellsInRange = new List<GridCell>();
 

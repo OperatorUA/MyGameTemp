@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class WorldGenerator : MonoBehaviour
+public class SimpleWorldGenerator : MonoBehaviour
 {
     public GameObject prefab;
     public float chance;

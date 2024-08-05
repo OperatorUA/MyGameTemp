@@ -11,7 +11,10 @@ public class OrdersBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (orders.Count == 0) return;
+        if (orders.Count == 0)
+        {
+            orders.Add(new IdleCmd(transform.GetComponent<BaseUnit>()));
+        }
 
         if (currentOrder != null)
         {
